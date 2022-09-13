@@ -479,3 +479,14 @@ function create_post_type()
   );
 }
 add_action('init', 'create_post_type');
+
+/**
+ * 検索結果から固定ページを除外
+ */
+function search_filter($query)
+{
+  if (!is_admin() && $query->is_main_query() && $query->is_search()) {
+    $query->set('post_type', 'post');
+  }
+}
+add_action('pre_get_posts', 'search_filter');
