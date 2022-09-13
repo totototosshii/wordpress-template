@@ -1,7 +1,7 @@
 <?php
 
 /**
- * footerテンプレート
+ * フッターテンプレート
  */
 ?>
 <footer class="ly_footer">
@@ -19,7 +19,7 @@
 			);
 			?>
 		</nav>
-		<small class="bl_footerCopy">@2021 - <?php echo date('Y'); ?></small>
+		<small class="bl_footerCopy">&copy;2021 - <?php echo date('Y'); ?></small>
 	</div>
 </footer>
 </div>

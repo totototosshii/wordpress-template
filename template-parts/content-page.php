@@ -1,7 +1,7 @@
 <?php
 
 /**
- * 投稿詳細のコンテンツ部分テンプレート
+ * 固定のコンテンツ部分テンプレート
  */
 ?>
 <article id="post-<?php the_ID(); ?>" <?php post_class('bl_article'); ?>>

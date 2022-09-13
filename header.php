@@ -1,7 +1,7 @@
 <?php
 
 /**
- * headerテンプレート
+ * ヘッダーテンプレート
  */
 ?>
 <!DOCTYPE html>

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * archive-customテンプレート
+ * 記事一覧カスタムテンプレート
  */
 get_header();
 ?>
@@ -30,7 +30,6 @@ get_header();
 			}
 			?>
 		<?php else : ?>
-			<!-- コンテンツがない場合 -->
 			<p>コンテンツがありません。</p>
 		<?php endif;
 		wp_reset_postdata(); ?>

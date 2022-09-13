@@ -1,7 +1,7 @@
 <?php
 
 /**
- * sidebarテンプレート
+ * サイドバーテンプレート
  */
 ?>
 <aside class="ly_cont_side">

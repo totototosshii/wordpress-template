@@ -1,7 +1,7 @@
 <?php
 
 /**
- * pageテンプレート
+ * 固定テンプレート
  */
 get_header();
 ?>
@@ -12,10 +12,9 @@ get_header();
 			// ループ開始
 			while (have_posts()) {
 				the_post();
-				get_template_part('template-parts/content');
+				get_template_part('template-parts/content-page');
 			}
 		} else {
-			// コンテンツがない場合
 			echo '<p>コンテンツがありません。</p>';
 		}
 		?>

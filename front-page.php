@@ -1,6 +1,6 @@
 <?php
 
 /**
- * front-pageテンプレート
+ * フロントページテンプレート
  */
 get_template_part('page');

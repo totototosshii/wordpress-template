@@ -1,7 +1,7 @@
 <?php
 
 /**
- * searchformテンプレート
+ * 検索フォームテンプレート
  */
 ?>
 <form class="bl_form" role="search" method="get" action="<?php echo do_shortcode('[url]'); ?>">

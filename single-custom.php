@@ -1,7 +1,7 @@
 <?php
 
 /**
- * single-customテンプレート
+ * 投稿詳細カスタムテンプレート
  */
 get_header();
 ?>

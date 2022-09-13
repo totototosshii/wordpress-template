@@ -1,7 +1,7 @@
 <?php
 
 /**
- * archiveテンプレート
+ * 記事一覧テンプレート
  */
 get_header();
 ?>
@@ -20,7 +20,6 @@ get_header();
 				pagination($max_num_pages);
 			}
 		} else {
-			// コンテンツがない場合
 			echo '<p>コンテンツがありません。</p>';
 		}
 		?>
