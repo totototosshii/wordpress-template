@@ -33,8 +33,8 @@ function my_setup()
   add_theme_support(
     'custom-logo',
     array(
-      'height'               => $logo_height,
       'width'                => $logo_width,
+      'height'               => $logo_height,
       'flex-width'           => true,
       'flex-height'          => true,
       'unlink-homepage-logo' => true,
@@ -250,7 +250,7 @@ remove_filter('the_excerpt', 'wpautop');
 function my_archive_title($title)
 {
   if (is_home()) { /* ホームの場合 */
-    $title = 'ブログ';
+    $title = '最新記事一覧';
   } elseif (is_category()) { /* カテゴリーアーカイブの場合 */
     $title = '' . single_cat_title('', false) . '';
   } elseif (is_tag()) { /* タグアーカイブの場合 */
