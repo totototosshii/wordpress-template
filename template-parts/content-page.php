@@ -5,7 +5,7 @@
  */
 ?>
 <article id="post-<?php the_ID(); ?>" <?php post_class('bl_article'); ?>>
-  <h2><?php the_title(); ?></h2>
+  <h1><?php the_title(); ?></h1>
   <time datetime="<?php the_time('Y-m-d'); ?>"><?php the_time(); ?></time>
   <?php if (has_post_thumbnail()) : ?>
     <figure>
