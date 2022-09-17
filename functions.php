@@ -37,7 +37,7 @@ function my_setup()
       'height'               => $logo_height,
       'flex-width'           => true,
       'flex-height'          => true,
-      'unlink-homepage-logo' => true,
+      'unlink-homepage-logo' => false,
     )
   );
   /**

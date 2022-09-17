@@ -5,7 +5,10 @@
  */
 ?>
 <article id="post-<?php the_ID(); ?>" <?php post_class('bl_article'); ?>>
-  <h1><?php the_title(); ?></h1>
+  <?php $heading_tag = is_front_page() ? 'div' : 'h1'; ?>
+  <<?php echo esc_attr($heading_tag); ?>>
+    <?php the_title(); ?>
+  </<?php echo esc_attr($heading_tag); ?>>
   <time datetime="<?php the_time('Y-m-d'); ?>"><?php the_time(); ?></time>
   <?php if (has_post_thumbnail()) : ?>
     <figure>
