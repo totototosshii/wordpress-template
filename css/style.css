@@ -117,7 +117,7 @@ img {
   transition: background-color 0.4s, color 0.4s, opacity 0.4s;
 }
 
-:where(input[type="text"], input[type="email"], input[type="tel"], input[type="url"], input[type="search"], textarea, select) {
+:where(input[type="text"], input[type="email"], input[type="tel"], input[type="url"], input[type="search"], input[type="number"], input[type="password"], textarea, select) {
   appearance: none;
   border: 2px solid #aaa;
   width: 100%;
@@ -129,8 +129,10 @@ input[type="text"]:focus:not(:focus-visible),
 input[type="email"]:focus:not(:focus-visible),
 input[type="tel"]:focus:not(:focus-visible),
 input[type="search"]:focus:not(:focus-visible),
+input[type="number"]:focus:not(:focus-visible),
+input[type="password"]:focus:not(:focus-visible),
 textarea:focus:not(:focus-visible),
-select:focus:not(:focus-visible), input[type="number"], input[type="password"]) {
+select:focus:not(:focus-visible)) {
   outline: 0;
 }
 
