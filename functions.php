@@ -178,6 +178,29 @@ add_filter('style_loader_src', 'vc_remove_wp_ver_css_js', 9999);
 add_filter('script_loader_src', 'vc_remove_wp_ver_css_js', 9999);
 
 /**
+ * 画像に自動で付与されるsrcsetを無効化
+ */
+add_filter('wp_calculate_image_srcset_meta', '__return_null');
+
+/**
+ * SVGファイルをアップロード可能にする
+ */
+add_filter('wp_check_filetype_and_ext', function ($data, $file, $filename, $mimes) {
+  $filetype = wp_check_filetype($filename, $mimes);
+  return [
+    'ext' => $filetype['ext'],
+    'type' => $filetype['type'],
+    'proper_filename' => $data['proper_filename']
+  ];
+}, 10, 4);
+function cc_mime_types($mimes)
+{
+  $mimes['svg'] = 'image/svg+xml';
+  return $mimes;
+}
+add_filter('upload_mimes', 'cc_mime_types');
+
+/**
  * 標準メニューを非表示
  * @link https://haniwaman.com/wp-menu-remove/
  */
