@@ -1,7 +1,7 @@
 * {
-  line-height: 1;
   margin: 0;
   padding: 0;
+  line-height: 1;
 }
 
 *,
@@ -11,15 +11,15 @@
 }
 
 *:where(:not(fieldset, progress, meter)) {
+  border-width: 0;
+  border-style: solid;
   background-origin: border-box;
   background-repeat: no-repeat;
-  border-style: solid;
-  border-width: 0;
 }
 
 html {
-  -webkit-text-size-adjust: none;
   block-size: 100%;
+  -webkit-text-size-adjust: none;
 }
 
 body {
@@ -87,8 +87,8 @@ textarea,
 :where(input[type="file"])::file-selector-button {
   -webkit-tap-highlight-color: transparent;
   -webkit-touch-callout: none;
-  text-align: center;
   user-select: none;
+  text-align: center;
 }
 
 :where(button, button[type], input[type="button"], input[type="submit"], input[type="reset"])[disabled] {
@@ -108,19 +108,15 @@ body {
 }
 
 img {
-  height: auto;
   max-width: 100%;
+  height: auto;
   vertical-align: top;
 }
 
-:where(a, button) {
-  transition: background-color 0.4s, color 0.4s, opacity 0.4s;
-}
-
 :where(input[type="text"], input[type="email"], input[type="tel"], input[type="url"], input[type="search"], input[type="number"], input[type="password"], textarea, select) {
+  width: 100%;
   appearance: none;
   border: 2px solid #aaa;
-  width: 100%;
 }
 
 :where(a:focus:not(:focus-visible),
@@ -155,21 +151,21 @@ textarea {
 }
 
 .ly_header {
-  background-color: #adc193;
-  padding: 15px 0;
   position: sticky;
   top: 0;
-  transition: background-color 0.4s;
   z-index: 20;
+  transition: background-color 0.4s;
+  background-color: #adc193;
+  padding: 15px 0;
 }
 
 .ly_header_inner {
-  align-items: center;
+  width: min(100%, 980px);
+  margin: auto;
   display: flex;
   justify-content: space-between;
-  margin: auto;
+  align-items: center;
   padding: 0 4vw;
-  width: min(100%, 980px);
 }
 
 .ly_cont_main {
@@ -182,20 +178,54 @@ textarea {
 }
 
 .ly_cont_inner {
+  width: min(100%, 980px);
   margin: auto;
   padding: 0 4vw;
-  width: min(100%, 980px);
 }
 
 .ly_footer {
-  background-color: #bcbcff;
   padding: 20px 0;
+  background-color: #bcbcff;
 }
 
 .ly_footer_inner {
+  width: min(100%, 980px);
   margin: auto;
   padding: 0 4vw;
-  width: min(100%, 980px);
+}
+
+.bl_loading {
+  background: radial-gradient(#dbedff, #7fbfff);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 70;
+}
+
+.bl_loading_animation {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  width: 100px;
+  height: 100px;
+  background-color: #fff;
+  border-radius: 100%;
+  animation: scaleout 1s infinite ease-in-out;
+}
+
+@keyframes scaleout {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+  }
+
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0;
+  }
 }
 
 .bl_headerLogo {
@@ -207,9 +237,9 @@ textarea {
 }
 
 .bl_headerList {
-  align-items: center;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .bl_headerList > * + * {
@@ -227,40 +257,40 @@ textarea {
 
 .bl_drawer_wrapper {
   position: fixed;
-  right: 4vw;
   top: 9vw;
+  right: 4vw;
+  z-index: 50;
   transition: background-color 0.4s;
-  z-index: 40;
 }
 
 .bl_drawer {
-  height: 30px;
   position: relative;
   width: 40px;
+  height: 30px;
 }
 
 .bl_drawerLine {
-  background-color: currentColor;
-  display: inline-block;
-  height: 2px;
-  left: 50%;
   position: absolute;
-  text-align: center;
   top: 50%;
+  left: 50%;
   transform: translate(-50%, -50%);
+  text-align: center;
+  background-color: currentColor;
   transition: transform 0.4s, background-color 0.4s;
   width: 100%;
+  height: 2px;
+  display: inline-block;
 }
 
 .bl_drawerLine::before,
 .bl_drawerLine::after {
-  background-color: currentColor;
   content: "";
   display: block;
+  width: 100%;
   height: 2px;
   position: absolute;
+  background-color: currentColor;
   transition: transform 0.4s, top 0.4s;
-  width: 100%;
 }
 
 .bl_drawerLine::before {
@@ -272,23 +302,23 @@ textarea {
 }
 
 .bl_drawerNav {
-  background-color: rgba(240, 240, 240, 0.9);
-  height: 100vh;
-  left: 0;
-  overflow-y: auto;
   position: fixed;
   top: 0;
+  left: 0;
+  z-index: 40;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(240, 240, 240, 0.9);
   transform: translateX(100%);
   transition: transform 0.4s;
-  width: 100%;
-  z-index: 35;
+  overflow-y: auto;
 }
 
 .bl_drawerList {
-  align-items: center;
   display: flex;
-  flex-direction: column;
   justify-content: center;
+  align-items: center;
+  flex-direction: column;
   margin: 100px 0;
 }
 
@@ -302,78 +332,15 @@ textarea {
   padding: 12px;
 }
 
-.bl_loading {
-  background: radial-gradient(#dbedff, #7fbfff);
-  height: 100vh;
-  left: 0;
-  position: fixed;
-  top: 0;
-  width: 100vw;
-  z-index: 110;
-}
-
-.bl_loading_animation {
-  animation: scaleout 1s infinite ease-in-out;
-  background-color: #fff;
-  border-radius: 100%;
-  height: 100px;
-  left: 50%;
-  position: absolute;
-  text-align: center;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: 100px;
-}
-
-@keyframes scaleout {
-  0% {
-    transform: translate(-50%, -50%) scale(0);
-  }
-
-  100% {
-    opacity: 0;
-    transform: translate(-50%, -50%) scale(1);
-  }
-}
-
-.bl_pager {
-  margin-inline: auto;
-  max-inline-size: max-content;
-}
-
-.bl_pager_inner {
-  align-items: center;
-  display: flex;
-}
-
-.bl_pager_inner li:not(:last-of-type) {
-  margin-right: 0.6em;
-}
-
-.bl_pager_link {
-  align-items: center;
-  background-color: lightblue;
-  display: flex;
-  font-size: clamp( 1.8rem, calc( 1.8rem + (( 100vw - 375px ) * (( 26 - 18 ) / ( 1200 - 375 )))), 2.6rem );
-  height: 40px;
-  justify-content: center;
-  letter-spacing: 0.15em;
-  width: 40px;
-}
-
-.bl_pager_link.is_active {
-  background-color: orange;
-}
-
 .bl_breadcrumb {
-  align-items: center;
   display: flex;
+  align-items: center;
   margin: 1em 1em 0 1em;
 }
 
 .bl_breadcrumb li {
-  align-items: center;
   display: flex;
+  align-items: center;
 }
 
 .bl_breadcrumb li:not(:last-of-type) {
@@ -386,14 +353,43 @@ textarea {
 }
 
 .bl_breadcrumb li:last-of-type a {
-  color: inherit;
   pointer-events: none;
   text-decoration: none;
+  color: inherit;
+}
+
+.bl_pager {
+  max-inline-size: max-content;
+  margin-inline: auto;
+}
+
+.bl_pager_inner {
+  display: flex;
+  align-items: center;
+}
+
+.bl_pager_inner li:not(:last-of-type) {
+  margin-right: 0.6em;
+}
+
+.bl_pager_link {
+  font-size: clamp(1.8rem, calc(1.8rem + ((100vw - 375px) * ((26 - 18) / (1200 - 375)))), 2.6rem );
+  letter-spacing: 0.15em;
+  background-color: lightblue;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+}
+
+.bl_pager_link.is_active {
+  background-color: orange;
 }
 
 .bl_footerNav {
-  margin-inline: auto;
   max-inline-size: max-content;
+  margin-inline: auto;
 }
 
 .bl_footerCopy {
@@ -409,51 +405,51 @@ textarea {
 }
 
 .el_lv2Heading {
-  font-size: clamp( 1.6rem, calc( 1.6rem + (( 100vw - 375px ) * (( 52 - 16 ) / ( 1200 - 375 )))), 5.2rem );
+  font-size: clamp(1.6rem, calc(1.6rem + ((100vw - 375px) * ((52 - 16) / (1200 - 375)))), 5.2rem );
   font-weight: 700;
   letter-spacing: 0.024em;
 }
 
 .el_scrollTop {
-  bottom: 10px;
   position: fixed;
   right: 10px;
-  transition: bottom 0.3s;
+  bottom: 10px;
+  transition: bottom 0.2s;
   z-index: 30;
 }
 
-.el_scrollTop button {
+.el_scrollTop > button {
+  display: flex;
   align-items: center;
+  justify-content: center;
   background-color: #82C0EB;
   border-radius: 50%;
-  display: flex;
-  height: 60px;
-  justify-content: center;
-  transition: transform 0.2s;
   width: 60px;
+  height: 60px;
+  transition: transform 0.2s;
 }
 
-.el_scrollTop button:before {
-  border-right: 2px solid #fff;
-  border-top: 2px solid #fff;
+.el_scrollTop > button:before {
   content: "";
-  height: 10px;
-  transform: rotate(-45deg);
   width: 10px;
+  height: 10px;
+  border-top: 2px solid #fff;
+  border-right: 2px solid #fff;
+  transform: rotate(-45deg);
 }
 
-.el_scrollTop button:focus {
+.el_scrollTop > button:focus {
   transform: scale(1.1);
 }
 
 .post-navigation {
-  margin: auto;
   width: 80%;
+  margin: auto;
 }
 
 .nav-links {
-  align-items: center;
   display: flex;
+  align-items: center;
   justify-content: space-between;
 }
 
@@ -533,11 +529,15 @@ textarea {
 }
 
 @media (hover: hover) and (pointer: fine) {
+  :where(a, button):hover {
+    transition: background-color 0.4s, color 0.4s, opacity 0.4s;
+  }
+
   .bl_headerList a:hover {
     color: #246a92;
   }
 
-  .el_scrollTop button:hover {
+  .el_scrollTop > button:hover {
     transform: scale(1.1);
   }
 }
