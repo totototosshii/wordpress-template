@@ -97,18 +97,18 @@ function my_script_init()
   // 自作JavaScriptファイルの読み込み
   wp_enqueue_script(
     'bundle-js',
-    get_theme_file_uri('/js/bundle.js'),
+    get_theme_file_uri('/assets/js/bundle.js'),
     array('jquery'), // bundle.jsよりも前に読み込みたいJSファイルの名前を記述
-    filemtime(get_theme_file_path('/js/bundle.js')), // 更新時にキャッシュクリア
+    filemtime(get_theme_file_path('/assets/js/bundle.js')), // 更新時にキャッシュクリア
     true // wp_footer()の位置で出力
   );
 
   // 自作CSSファイルの読み込み
   wp_enqueue_style(
     'style-css',
-    get_theme_file_uri('/css/style.min.css'),
+    get_theme_file_uri('/assets/css/style.min.css'),
     array(),
-    filemtime(get_theme_file_path('/css/style.min.css')), // 更新時にキャッシュクリア
+    filemtime(get_theme_file_path('/assets/css/style.min.css')), // 更新時にキャッシュクリア
     'all'
   );
 }
@@ -308,7 +308,7 @@ add_filter('get_the_archive_title', 'my_archive_title');
 // imgパス短縮
 function imgPath()
 {
-  return get_theme_file_uri() . '/img/';
+  return get_theme_file_uri() . '/assets/images/';
 }
 add_shortcode('img', 'imgPath');
 // 投稿のカスタムHTMLから記述する場合↓
@@ -379,7 +379,7 @@ function pagination($args = array())
     echo "<ol class=\"bl_pager_inner\">\n";
     // Prev：現在のページが1より大きい場合は表示
     if ($paged > 2 && $paged > $range + 1 && $showitems < $pages) echo "<li><a class=\"bl_pager_link\" href='" . get_pagenum_link(1) . "'>" . $start_text . "</a></li>\n";
-    if ($paged > 1 && $showitems < $pages) echo "<li><a class=\"bl_pager_link\" href='" . get_pagenum_link($paged - 1) . "'><img src=\"" . esc_url(get_theme_file_uri()) . "/img/pager-arrowLeft.png\" alt=\"Prev\"></a></li>\n";
+    if ($paged > 1 && $showitems < $pages) echo "<li><a class=\"bl_pager_link\" href='" . get_pagenum_link($paged - 1) . "'><img src=\"" . esc_url(get_theme_file_uri()) . "/assets/images/pager-arrowLeft.png\" alt=\"Prev\"></a></li>\n";
     // ページ番号を表示（現在のページはリンクなし）
     for ($i = 1; $i <= $pages; $i++) {
       if (1 != $pages && (!($i >= $paged + $range + 1 || $i <= $paged - $range - 1) || $pages <= $showitems)) {
@@ -388,7 +388,7 @@ function pagination($args = array())
       }
     }
     // Next：総ページ数より現在のページ値が小さい場合は表示
-    if ($paged < $pages && $showitems < $pages) echo "<li><a class=\"bl_pager_link\" href=\"" . get_pagenum_link($paged + 1) . "\"><img src=\"" . esc_url(get_theme_file_uri()) . "/img/pager-arrowRight.png\" alt=\"Next\"></a></li>\n";
+    if ($paged < $pages && $showitems < $pages) echo "<li><a class=\"bl_pager_link\" href=\"" . get_pagenum_link($paged + 1) . "\"><img src=\"" . esc_url(get_theme_file_uri()) . "/assets/images/pager-arrowRight.png\" alt=\"Next\"></a></li>\n";
     if ($paged < $pages - 1 &&  $paged + $range - 1 < $pages && $showitems < $pages) echo "<li><a class=\"bl_pager_link\" href='" . get_pagenum_link($pages) . "'>" . $end_text . "</a></li>\n";
     echo "</ol>\n";
     echo "</nav>\n";
