@@ -513,3 +513,20 @@ function search_filter($query)
   }
 }
 add_action('pre_get_posts', 'search_filter');
+
+/**
+ * ビジュアルエディタの整形無効
+ */
+add_filter(
+  'tiny_mce_before_init',
+  function ($init_array) {
+    global $allowedposttags;
+    $init_array['valid_elements']          = '*[*]';
+    $init_array['extended_valid_elements'] = '*[*]';
+    $init_array['valid_children']          = '+a[' . implode('|', array_keys($allowedposttags)) . ']';
+    $init_array['indent']                  = true;
+    $init_array['wpautop']                 = false;
+    $init_array['force_p_newlines']        = false;
+    return $init_array;
+  }
+);
