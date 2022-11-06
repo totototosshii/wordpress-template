@@ -267,8 +267,6 @@ remove_filter('the_excerpt', 'wpautop');
 
 /**
  * アーカイブタイトル書き換え
- * @param string $title 書き換え前のタイトル.
- * @return string $title 書き換え後のタイトル.
  */
 function my_archive_title($title)
 {
@@ -305,7 +303,7 @@ add_filter('get_the_archive_title', 'my_archive_title');
 /**
  * ショートコード
  */
-// imgパス短縮
+// imageパス短縮
 function imgPath()
 {
   return get_theme_file_uri() . '/assets/images/';
@@ -317,7 +315,7 @@ add_shortcode('img', 'imgPath');
 /** <img src="<?php echo do_shortcode('[img]'); ?>画像ファイル名" alt="">
  */
 
-// url短縮
+// URL短縮
 function urlPath()
 {
   return esc_url(home_url()) . '/';
@@ -342,7 +340,7 @@ function auto_post_slug($slug, $post_ID, $post_status, $post_type)
 add_filter('wp_unique_post_slug', 'auto_post_slug', 10, 4);
 
 /**
- * ページネーション（一覧ページ）
+ * ページネーション
  * @link https://www.webdesignleaves.com/pr/wp/wp_func_pager.html
  */
 function pagination($args = array())
@@ -350,7 +348,7 @@ function pagination($args = array())
   //パラメータのデフォルト値
   $defaults = array(
     'pages' => '',  //サブループを使用する場合は指定
-    'range' => 2, //前後に表示するリンクの数
+    'range' => 1, //前後に表示するリンクの数
     'start_text' => '&laquo;',  //「先頭へ」のリンクの文字
     'end_text' => '&raquo;',  //「最後へ」のリンクの文字
   );
@@ -400,59 +398,60 @@ function pagination($args = array())
 //   }
 
 /**
- * 管理画面の「投稿」の名前を「〇〇」に変更
+ * 管理画面の「投稿」の名前を「ブログ」に変更
  */
 function change_post_menu_label()
 {
   global $menu;
   global $submenu;
-  $name ='〇〇';
-  $menu[5][0] = $name;
-  $submenu['edit.php'][5][0] = $name.'一覧';
-  $submenu['edit.php'][10][0] = '新しい'. $name;
+  $post_name = 'ブログ';
+  $menu[5][0] = $post_name;
+  $submenu['edit.php'][5][0] = $post_name . '一覧';
+  $submenu['edit.php'][10][0] = '新規作成';
 }
 function change_post_object_label()
 {
   global $wp_post_types;
-  $name = '〇〇';
+  $post_name = 'ブログ';
   $labels = &$wp_post_types['post']->labels;
-  $labels->name = $name;
-  $labels->singular_name = $name;
-  $labels->add_new = _x('追加', $name);
-  $labels->add_new_item = $name.'の新規追加';
-  $labels->edit_item = $name.'の編集';
-  $labels->new_item = '新規'. $name;
-  $labels->view_item = $name.'を表示';
-  $labels->search_items = $name.'を検索';
+  $labels->name = $post_name;
+  $labels->singular_name = $post_name;
+  $labels->add_new = _x('新規作成', $post_name);
+  $labels->add_new_item = '記事の新規追加';
+  $labels->edit_item = $post_name . 'の編集';
+  $labels->new_item = '新規' . $post_name;
+  $labels->view_item = 'この記事を表示';
+  $labels->search_items = $post_name . 'を検索';
   $labels->not_found = '記事が見つかりませんでした';
   $labels->not_found_in_trash = 'ゴミ箱に記事は見つかりませんでした';
 }
 add_action('init', 'change_post_object_label');
-add_action('admin_menu', 'change_post_menu_label');
 
 /**
  * カスタム投稿タイプの追加
  */
 function create_post_type()
 {
+  $custom_post_name = 'カスタム投稿';
+  $custom_taxonomy_name = 'タクソノミー';
   // カスタム投稿
   register_post_type(
-    'custom', // カスタム投稿名
+    'custom', // カスタム投稿名（そのままURLに使われる）
     array(
       'labels'          => array(
-        'all_items'          => 'カスタム投稿一覧',
-        'name'               => 'カスタム投稿',
-        'singular_name'      => 'カスタム投稿',
-        'menu_name'          => 'カスタム投稿',
-        'add_new'            => '新規追加',
-        'add_new_item'       => 'カスタム投稿を追加',
+        'all_items'          => $custom_post_name . '一覧',
+        'name'               => $custom_post_name,
+        'singular_name'      => $custom_post_name,
+        'menu_name'          => $custom_post_name,
+        'add_new'            => '新規作成',
+        'add_new_item'       => '記事の新規追加',
         'edit'               => '編集',
-        'edit_item'          => 'カスタム投稿の編集',
+        'edit_item'          => $custom_post_name . 'の編集',
         'view'               => '表示',
-        'view_item'          => 'カスタム投稿を表示',
-        'search_items'       => 'カスタム投稿の検索',
-        'not_found'          => '見つかりません',
-        'not_found_in_trash' => 'ゴミ箱にはありません',
+        'view_item'          => 'この記事を表示',
+        'search_items'       => $custom_post_name . 'の検索',
+        'not_found'          => '記事が見つかりませんでした',
+        'not_found_in_trash' => 'ゴミ箱に記事は見つかりませんでした',
         'parent'             => '親',
       ),
       'description'     => '',
@@ -470,49 +469,23 @@ function create_post_type()
       'show_in_rest' => true
     )
   );
-  // カスタムタクソノミー（カスタム投稿：タクソノミー01）
+  // カスタムタクソノミー
   register_taxonomy(
-    'custom-taxonomy01', // タクソノミー名
+    'ct-taxonomy', // タクソノミー名（そのままURLに使われる）
     'custom', // 使用するカスタム投稿名
     array(
       'hierarchical'   => true,
       'update_count_callback' => '_update_post_term_count',
-      'label'          => 'タクソノミー01',
+      'label'          => $custom_taxonomy_name,
       'show_ui'        => true,
       'query_var'      => true,
       'rewrite'        => true,
-      'singular_label' => 'タクソノミー01',
-      'show_in_rest' => true
-    )
-  );
-  // カスタムタクソノミー（カスタム投稿：タクソノミー02）
-  register_taxonomy(
-    'custom-taxonomy02', // タクソノミー名
-    'custom', // 使用するカスタム投稿名
-    array(
-      'hierarchical'   => true,
-      'update_count_callback' => '_update_post_term_count',
-      'label'          => 'タクソノミー02',
-      'show_ui'        => true,
-      'query_var'      => true,
-      'rewrite'        => true,
-      'singular_label' => 'タクソノミー02',
+      'singular_label' => $custom_taxonomy_name,
       'show_in_rest' => true
     )
   );
 }
 add_action('init', 'create_post_type');
-
-/**
- * 検索結果から固定ページを除外
- */
-function search_filter($query)
-{
-  if (!is_admin() && $query->is_main_query() && $query->is_search()) {
-    $query->set('post_type', 'post');
-  }
-}
-add_action('pre_get_posts', 'search_filter');
 
 /**
  * ビジュアルエディタの整形無効
@@ -530,3 +503,14 @@ add_filter(
     return $init_array;
   }
 );
+
+/**
+ * 検索結果から固定ページを除外
+ */
+function search_filter($query)
+{
+  if (!is_admin() && $query->is_main_query() && $query->is_search()) {
+    $query->set('post_type', 'post');
+  }
+}
+add_action('pre_get_posts', 'search_filter');

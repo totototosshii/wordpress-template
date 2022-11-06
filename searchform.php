@@ -8,7 +8,7 @@
   <input type="search" name="s" placeholder="<?php if (!is_search()) {
                                                 echo 'SEARCH';
                                               } ?>" value="<?php if (is_search()) {
-                                                                                                      echo get_search_query();
-                                                                                                    } ?>">
+                                                                                                    echo get_search_query();
+                                                                                                  } ?>">
   <button type="submit">検索する</button>
 </form>

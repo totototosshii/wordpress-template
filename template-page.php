@@ -1,10 +1,7 @@
-<!--
-	Template Name: template-pageテンプレート
--->
 <?php
 
 /**
- * template-pageテンプレート
+ * Template Name: オリジナルテンプレート
  */
 get_header();
 ?>

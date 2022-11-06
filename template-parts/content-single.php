@@ -11,7 +11,10 @@
     <?php if (has_post_thumbnail()) : ?>
       <?php the_post_thumbnail('post-thumbnail', array('alt' => the_title_attribute('echo=0'))); ?>
     <?php else : ?>
-      <img src="<?php echo do_shortcode('[img]'); ?>noimage.png" alt="NO IMAGE">
+      <picture class="bl_imgWrap">
+        <source srcset="<?php echo do_shortcode('[img]'); ?>no-image.webp" type="image/webp" />
+        <img src="<?php echo do_shortcode('[img]'); ?>no-image.png" width="375" height="375" alt="No Image" loading="lazy" />
+      </picture>
     <?php endif; ?>
   </figure>
   <?php the_content(); ?>

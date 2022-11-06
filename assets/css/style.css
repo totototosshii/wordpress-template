@@ -19,11 +19,9 @@
 
 html {
   block-size: 100%;
-  -webkit-text-size-adjust: none;
 }
 
 body {
-  -webkit-font-smoothing: antialiased;
   text-rendering: optimizeSpeed;
   min-block-size: 100%;
 }
@@ -85,8 +83,6 @@ textarea,
 :where(button, button[type], input[type="button"], input[type="submit"], input[type="reset"]),
 :where(input[type="file"])::-webkit-file-upload-button,
 :where(input[type="file"])::file-selector-button {
-  -webkit-tap-highlight-color: transparent;
-  -webkit-touch-callout: none;
   user-select: none;
   text-align: center;
 }
@@ -100,17 +96,25 @@ html {
   scroll-behavior: smooth;
 }
 
-body {
-  color: #2C2C2C;
-  font-family: "Helvetica Neue", "Helvetica", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Arial", "Yu Gothic", "Meiryo", sans-serif;
-  font-size: 1.6rem;
-  line-height: 1;
+[id] {
+  scroll-margin-top: 3em;
 }
 
-img {
+body {
+  color: #2C2C2C;
+  font-family: "Helvetica Neue", "Helvetica", "Hiragino Kaku Gothic ProN", "Arial", "Yu Gothic", "Meiryo", sans-serif;
+  font-size: 1.6rem;
+}
+
+:where(img) {
   max-width: 100%;
   height: auto;
   vertical-align: top;
+  margin: 0 auto;
+}
+
+:where(a) {
+  text-decoration: none;
 }
 
 :where(input[type="text"], input[type="email"], input[type="tel"], input[type="url"], input[type="search"], input[type="number"], input[type="password"], textarea, select) {
@@ -136,17 +140,10 @@ textarea {
   resize: vertical;
 }
 
-::placeholder {
-  color: #aaa;
-}
-
-[id] {
-  scroll-margin-top: 3em;
-}
-
 .ly_siteWrapper {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   min-height: 100vh;
 }
 
@@ -248,11 +245,7 @@ textarea {
 
 .bl_headerList a {
   line-height: 1.5;
-  padding: 10px;
-}
-
-.bl_headerList a:focus {
-  color: #246a92;
+  padding: 0.8em;
 }
 
 .bl_drawer_wrapper {
@@ -329,7 +322,7 @@ textarea {
 .bl_drawerList a {
   display: block;
   line-height: 1.5;
-  padding: 12px;
+  padding: 1em;
 }
 
 .bl_breadcrumb {
@@ -373,7 +366,7 @@ textarea {
 }
 
 .bl_pager_link {
-  font-size: clamp(1.8rem, calc(1.8rem + ((100vw - 375px) * ((26 - 18) / (1200 - 375)))), 2.6rem );
+  font-size: clamp(1.8rem, calc(1.8rem + ((100vw - 750px) * ((26 - 18) / (1200 - 750)))), 2.6rem );
   letter-spacing: 0.15em;
   background-color: lightblue;
   display: flex;
@@ -405,9 +398,37 @@ textarea {
 }
 
 .el_lv2Heading {
-  font-size: clamp(1.6rem, calc(1.6rem + ((100vw - 375px) * ((52 - 16) / (1200 - 375)))), 5.2rem );
+  font-size: clamp(1.6rem, calc(1.6rem + ((100vw - 750px) * ((52 - 16) / (1200 - 750)))), 5.2rem );
   font-weight: 700;
   letter-spacing: 0.024em;
+  text-align: center;
+  margin-top: 100px;
+  margin-bottom: 30px;
+}
+
+.el_lv3Heading {
+  font-family: "Lato", sans-serif;
+  font-size: clamp(1.6rem, calc(1.6rem + ((100vw - 750px) * ((32 - 16) / (1200 - 750)))), 3.2rem );
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.el_lv3Heading::before {
+  content: attr(data-subtitle);
+  display: block;
+}
+
+.el_lv3Heading:first-line {
+  color: #e3bf00;
+  font-size: clamp(1.4rem, calc(1.4rem + ((100vw - 750px) * ((40 - 14) / (1200 - 750)))), 4rem );
+}
+
+.el_lv4Heading {
+  font-size: clamp(1.6rem, calc(1.6rem + ((100vw - 750px) * ((32 - 16) / (1200 - 750)))), 3.2rem );
+  margin-right: auto;
+  margin-left: auto;
+  width: fit-content;
+  background-image: linear-gradient(rgba(0, 0, 0, 0) 70%, #e3bf00 70%);
 }
 
 .el_scrollTop {
@@ -426,7 +447,6 @@ textarea {
   border-radius: 50%;
   width: 60px;
   height: 60px;
-  transition: transform 0.2s;
 }
 
 .el_scrollTop > button:before {
@@ -436,10 +456,6 @@ textarea {
   border-top: 2px solid #fff;
   border-right: 2px solid #fff;
   transform: rotate(-45deg);
-}
-
-.el_scrollTop > button:focus {
-  transform: scale(1.1);
 }
 
 .post-navigation {
@@ -487,6 +503,10 @@ textarea {
 }
 
 @media (min-width: 768px) {
+  :where(a, button) {
+    transition: background-color 0.4s, color 0.4s, opacity 0.4s;
+  }
+
   .ly_header {
     padding: 10px 0;
   }
@@ -514,6 +534,10 @@ textarea {
   .bl_drawer_wrapper {
     display: none;
   }
+
+  .el_scrollTop > button {
+    transition: transform 0.2s;
+  }
 }
 
 @media (min-width: 1024px) {
@@ -529,15 +553,13 @@ textarea {
 }
 
 @media (hover: hover) and (pointer: fine) {
-  :where(a, button):hover {
-    transition: background-color 0.4s, color 0.4s, opacity 0.4s;
-  }
-
-  .bl_headerList a:hover {
+  .bl_headerList a:hover,
+  .bl_headerList a:focus {
     color: #246a92;
   }
 
-  .el_scrollTop > button:hover {
+  .el_scrollTop > button:hover,
+  .el_scrollTop > button:focus {
     transform: scale(1.1);
   }
 }

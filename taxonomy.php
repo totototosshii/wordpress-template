@@ -1,7 +1,7 @@
 <?php
 
 /**
- * 記事一覧カスタムテンプレート
+ * カスタムタクソノミーテンプレート
  */
 get_header();
 ?>
@@ -10,11 +10,19 @@ get_header();
 		<h1><?php echo get_the_archive_title(); ?>の一覧</h1>
 		<?php
 		$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
+		$type = get_query_var('ct-taxonomy');
 		$args = array(
 			'post_type' => 'custom', // 投稿タイプを指定（カスタム投稿名を記述）
 			'posts_per_page' => 1, // 1ページに表示したい記事を最大1件に指定
 			'post_status' => 'publish', // 公開済みページのみ指定
 			'order' => 'DESC', // 記事の順番を降順に指定
+			'tax_query' => array(
+				array(
+					'taxonomy' => 'ct-taxonomy',
+					'field' => 'slug',
+					'terms' => $type
+				)
+			),
 			'paged' => $paged // ページ分割時のページ
 		);
 		$the_query = new WP_Query($args);
