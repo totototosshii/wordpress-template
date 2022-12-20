@@ -5,6 +5,13 @@
  */
 get_header();
 ?>
+<ol class="bl_breadcrumb">
+	<?php
+	if (function_exists('bcn_display') && !is_front_page()) {
+		bcn_display();
+	}
+	?>
+</ol>
 <div class="ly_cont ly_cont__col">
 	<main class="ly_cont_main">
 		<?php the_archive_title('<h1 class="">', '</h1>'); ?>

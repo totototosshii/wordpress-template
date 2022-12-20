@@ -78,21 +78,24 @@ function my_script_init()
   //   '//fonts.googleapis.com/css2?family=Lexend+Deca:wght@400;500&display=swap'
   // );
 
-  // slick
-  // wp_enqueue_script(
-  //   'slick',
-  //   '//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js',
-  //   array('jquery'),
-  //   "1.8.1",
-  //   true
-  // );
-  // wp_enqueue_style(
-  //   'slick',
-  //   '//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css',
-  //   array(),
-  //   "1.8.1",
-  //   'all'
-  // );
+  // トップページのみファイル追加
+  // Splideスライダー
+  if (is_front_page()) {
+    wp_enqueue_style(
+      'splide',
+      'https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css',
+      array(),
+      "4.1.4",
+      'all'
+    );
+    wp_enqueue_script(
+      'splide',
+      'https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js',
+      array('jquery'),
+      "4.1.4",
+      true
+    );
+  }
 
   // 自作JavaScriptファイルの読み込み
   wp_enqueue_script(
@@ -113,39 +116,6 @@ function my_script_init()
   );
 }
 add_action('wp_enqueue_scripts', 'my_script_init');
-
-/**
- * トップページのみファイル追加
- */
-// function file_load_styles()
-// {
-// 	if (is_front_page()) {
-//     wp_enqueue_style(
-//       'slick',
-//       '//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css',
-//       array(),
-//       "1.8.1",
-//       'all'
-//     );
-// 	}
-// }
-// wp_headに処理を登録
-// add_action('wp_head', 'file_load_styles');
-
-// function file_load_scripts()
-// {
-// 	if (is_front_page()) {
-//     wp_enqueue_scripts(
-//       'slick',
-//       '//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js',
-//       array('jquery'),
-//       "1.8.1",
-//       true
-//     );
-// 	}
-// }
-// wp_footerに処理を登録
-// add_action('wp_footer', 'file_load_scripts');
 
 /**
  * 不要なタグを削除

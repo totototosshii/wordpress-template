@@ -61,10 +61,3 @@
 			);
 			?>
 		</nav>
-		<ol class="bl_breadcrumb">
-			<?php
-			if (function_exists('bcn_display') && !is_front_page()) {
-				bcn_display();
-			}
-			?>
-		</ol>
